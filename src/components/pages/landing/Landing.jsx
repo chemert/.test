@@ -102,7 +102,7 @@ function Landing() {
 						<h1 className="text-4xl font-bold gradient-text mb-3">Dashboard</h1>
 						<p className="text-white/80 text-lg font-medium">
 							Welcome back, <span className="gradient-text font-bold">{user.name}</span>! 
-							Here's what's happening with your licenses today.
+							Here's what\'s happening with your licenses today.
 						</p>
 					</div>
 					<div className="flex items-center gap-2 glass-enhanced px-4 py-2 rounded-xl">
