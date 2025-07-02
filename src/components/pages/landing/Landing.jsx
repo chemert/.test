@@ -10,7 +10,6 @@ import {
 	BiCheckCircle,
 	BiTime,
 	BiGlobe,
-	BiActivity,
 	BiLock,
 	BiStats
 } from 'react-icons/bi';
