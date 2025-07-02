@@ -1,0 +1,342 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-dark-950 text-white font-sans antialiased;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(79, 172, 254, 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-glass-light backdrop-blur-md border border-white/10 shadow-glass;
+  }
+  
+  .glass-enhanced {
+    @apply bg-glass-medium backdrop-blur-lg border border-white/15 shadow-glass-lg;
+  }
+  
+  .btn-modern {
+    @apply relative overflow-hidden transition-all duration-300 ease-out;
+    @apply bg-gradient-primary text-white font-bold;
+    @apply hover:transform hover:-translate-y-1 hover:scale-105;
+    @apply active:transform active:translate-y-0 active:scale-100;
+    @apply shadow-md hover:shadow-colored;
+  }
+  
+  .btn-modern::before {
+    content: '';
+    @apply absolute top-0 -left-full w-full h-full;
+    @apply bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    @apply transition-all duration-500;
+  }
+  
+  .btn-modern:hover::before {
+    @apply left-full;
+  }
+  
+  .card-modern {
+    @apply glass-effect rounded-2xl transition-all duration-300;
+    @apply hover:transform hover:-translate-y-2 hover:scale-105;
+    @apply hover:border-white/20 hover:shadow-glass-lg;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+  
+  .input-modern {
+    @apply glass-effect rounded-xl px-5 py-4 text-white placeholder-white/60;
+    @apply border-white/10 hover:border-white/30 focus:border-transparent;
+    @apply focus:ring-2 focus:ring-primary-500/50 focus:bg-glass-medium;
+    @apply transition-all duration-200;
+  }
+  
+  .select-modern {
+    @apply input-modern appearance-none cursor-pointer;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23ffffff" d="m2 0-2 2h4zm0 5 2-2h-4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+  }
+  
+  .tooltip {
+    @apply relative;
+  }
+  
+  .tooltip::after {
+    content: attr(data-tooltip);
+    @apply absolute bottom-full left-1/2 transform -translate-x-1/2;
+    @apply glass-enhanced text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap;
+    @apply opacity-0 pointer-events-none transition-all duration-200;
+    @apply border border-white/20 shadow-lg;
+  }
+  
+  .tooltip:hover::after {
+    @apply opacity-100 -translate-y-2;
+  }
+  
+  .badge-modern {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+    @apply glass-effect border border-white/20 text-white;
+  }
+  
+  .nav-link {
+    @apply flex items-center gap-4 px-5 py-4 text-white/80 font-semibold;
+    @apply glass-effect rounded-xl transition-all duration-200;
+    @apply hover:text-white hover:bg-glass-medium hover:transform hover:translate-x-2;
+    @apply border border-transparent hover:border-white/20;
+  }
+  
+  .nav-link.active {
+    @apply bg-gradient-primary text-white border-white/30 shadow-colored;
+  }
+  
+  .nav-link.logout:hover {
+    @apply bg-gradient-error;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .filter-blur-xs {
+    filter: blur(2px);
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-modern::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  
+  .scrollbar-modern::-webkit-scrollbar-track {
+    @apply bg-glass-light rounded-sm;
+  }
+  
+  .scrollbar-modern::-webkit-scrollbar-thumb {
+    @apply bg-gradient-primary rounded-sm;
+  }
+  
+  .scrollbar-modern::-webkit-scrollbar-thumb:hover {
+    @apply bg-gradient-secondary shadow-glow;
+  }
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Modern focus styles */
+.focus-modern:focus {
+  @apply outline-none ring-2 ring-primary-500/50 ring-offset-2 ring-offset-dark-950;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  @apply transition-transform duration-300 hover:transform hover:-translate-y-2;
+}
+
+.hover-glow {
+  @apply transition-shadow duration-300 hover:shadow-glow;
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 hover:transform hover:scale-105;
+}
+
+/* Loading states */
+.loading-pulse {
+  @apply animate-pulse bg-glass-light;
+}
+
+.loading-shimmer {
+  @apply shimmer bg-glass-light;
+}
+
+/* Status indicators */
+.status-online {
+  @apply bg-green-500 shadow-lg shadow-green-500/50;
+}
+
+.status-offline {
+  @apply bg-red-500 shadow-lg shadow-red-500/50;
+}
+
+.status-warning {
+  @apply bg-yellow-500 shadow-lg shadow-yellow-500/50;
+}
+
+/* Modern checkbox */
+.checkbox-modern {
+  @apply appearance-none w-5 h-5 glass-effect rounded border-2 border-white/20;
+  @apply checked:bg-gradient-primary checked:border-white/30;
+  @apply hover:border-white/40 hover:scale-105 transition-all duration-200;
+  @apply cursor-pointer relative;
+}
+
+.checkbox-modern:checked::after {
+  content: '✓';
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  @apply text-white text-xs font-bold;
+}
+
+/* Modern radio */
+.radio-modern {
+  @apply appearance-none w-5 h-5 glass-effect rounded-full border-2 border-white/20;
+  @apply checked:bg-gradient-primary checked:border-white/30;
+  @apply hover:border-white/40 hover:scale-105 transition-all duration-200;
+  @apply cursor-pointer relative;
+}
+
+.radio-modern:checked::after {
+  content: '';
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  @apply w-2 h-2 bg-white rounded-full;
+}
+
+/* Modern switch */
+.switch-modern {
+  @apply relative inline-block w-12 h-6;
+}
+
+.switch-modern input {
+  @apply opacity-0 w-0 h-0;
+}
+
+.switch-modern .slider {
+  @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0;
+  @apply glass-effect rounded-full transition-all duration-300;
+  @apply border border-white/20;
+}
+
+.switch-modern .slider:before {
+  content: '';
+  @apply absolute h-4 w-4 left-1 bottom-1 bg-white rounded-full;
+  @apply transition-all duration-300;
+}
+
+.switch-modern input:checked + .slider {
+  @apply bg-gradient-primary border-white/30;
+}
+
+.switch-modern input:checked + .slider:before {
+  @apply transform translate-x-6;
+}
+
+/* Modern progress bar */
+.progress-modern {
+  @apply w-full h-2 glass-effect rounded-full overflow-hidden;
+}
+
+.progress-modern .progress-fill {
+  @apply h-full bg-gradient-primary rounded-full transition-all duration-500;
+}
+
+/* Modern tabs */
+.tab-modern {
+  @apply px-6 py-3 font-semibold text-white/60 border-b-2 border-transparent;
+  @apply hover:text-white hover:border-white/20 transition-all duration-200;
+  @apply cursor-pointer;
+}
+
+.tab-modern.active {
+  @apply text-white border-primary-500 bg-glass-light;
+}
+
+/* Modern accordion */
+.accordion-modern {
+  @apply glass-effect rounded-xl overflow-hidden;
+}
+
+.accordion-header {
+  @apply px-6 py-4 font-semibold text-white cursor-pointer;
+  @apply hover:bg-glass-medium transition-all duration-200;
+  @apply border-b border-white/10;
+}
+
+.accordion-content {
+  @apply px-6 py-4 text-white/80;
+}
+
+/* Modern modal */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-50;
+  @apply flex items-center justify-center p-4;
+}
+
+.modal-content {
+  @apply glass-enhanced rounded-2xl max-w-lg w-full max-h-[90vh] overflow-auto;
+  @apply border border-white/20 shadow-glass-lg;
+}
+
+/* Modern dropdown */
+.dropdown-modern {
+  @apply absolute top-full left-0 mt-2 glass-enhanced rounded-xl;
+  @apply border border-white/20 shadow-glass-lg z-50;
+  @apply min-w-48 py-2;
+}
+
+.dropdown-item {
+  @apply px-4 py-2 text-white/80 hover:text-white hover:bg-glass-medium;
+  @apply transition-all duration-200 cursor-pointer;
+}
+
+/* Modern alert */
+.alert-modern {
+  @apply glass-enhanced rounded-xl p-4 border-l-4;
+}
+
+.alert-success {
+  @apply border-l-green-500 bg-green-500/10;
+}
+
+.alert-error {
+  @apply border-l-red-500 bg-red-500/10;
+}
+
+.alert-warning {
+  @apply border-l-yellow-500 bg-yellow-500/10;
+}
+
+.alert-info {
+  @apply border-l-blue-500 bg-blue-500/10;
+}
