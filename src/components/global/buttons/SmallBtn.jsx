@@ -27,25 +27,26 @@ function SmallBtn(props) {
 }
 
 const SmallButton = styled.button`
-	background: ${props => props.color ? props.color : 'var(--gradient-primary)'};
+	background: ${props => props.color ? props.color : 'var(--primary-gradient)'};
 	outline: none;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	font-weight: 600;
+	font-weight: 700;
 	line-height: 1.5;
 	color: ${props => props.txtcolor ? props.txtcolor : 'white'};
 	text-align: center;
 	cursor: pointer;
 	user-select: none;
 	border: none;
-	padding: 8px 16px;
+	padding: 12px 24px;
 	font-size: 0.875rem;
-	border-radius: var(--radius-md);
-	transition: var(--transition-fast);
+	border-radius: var(--radius-lg);
+	transition: var(--transition-bounce);
 	position: relative;
 	overflow: hidden;
-	min-height: 36px;
+	min-height: 44px;
+	box-shadow: var(--shadow-md);
 	
 	&::before {
 		content: '';
@@ -54,13 +55,13 @@ const SmallButton = styled.button`
 		left: -100%;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
 		transition: var(--transition-normal);
 	}
 	
 	&:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
+		transform: translateY(-3px) scale(1.05);
+		box-shadow: var(--shadow-colored);
 		
 		&::before {
 			left: 100%;
@@ -68,14 +69,14 @@ const SmallButton = styled.button`
 	}
 	
 	&:active {
-		transform: translateY(0);
+		transform: translateY(-1px) scale(1.02);
 	}
 	
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 0.6;
 		transform: none;
-		box-shadow: none;
+		box-shadow: var(--shadow-sm);
 		
 		&::before {
 			display: none;
@@ -84,7 +85,7 @@ const SmallButton = styled.button`
 	
 	@media screen and (max-width: 996px) {
 		width: 100%;
-		padding: 12px 16px;
+		padding: 16px 24px;
 	}
 `;
 

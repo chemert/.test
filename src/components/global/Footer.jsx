@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 function Footer() {
 	return (
-		<FooterWrapper>
+		<FooterWrapper className="glass-enhanced">
 			<FooterContent>
 				<FooterElement>
-					<FooterLogo>GateWay</FooterLogo>
-					<FooterCopyright>&copy; 2023</FooterCopyright>
+					<FooterLogo className="gradient-text">GateWay</FooterLogo>
+					<FooterCopyright>&copy; 2025</FooterCopyright>
 				</FooterElement>
 				<FooterLink
 					to={{
@@ -27,14 +27,14 @@ function Footer() {
 /* Modern Footer styling */
 const FooterWrapper = styled.div`
 	bottom: 0;
-	padding: 24px;
+	padding: 32px;
 	position: absolute;
 	right: 0;
 	width: 100%;
-	height: 80px;
-	background: var(--card-bg);
+	height: 100px;
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-lg);
 	border-top: 1px solid var(--border-color);
-	backdrop-filter: blur(20px);
 	
 	@media screen and (max-width: 992px) {
 		left: 0;
@@ -51,37 +51,40 @@ const FooterContent = styled.div`
 const FooterElement = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 16px;
 `;
 
 const FooterLogo = styled.span`
 	color: var(--text-primary);
-	font-size: 16px;
-	font-weight: 700;
-	letter-spacing: -0.025em;
+	font-size: 20px;
+	font-weight: 800;
+	letter-spacing: -0.05em;
 `;
 
 const FooterCopyright = styled.p`
 	color: var(--text-muted);
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 600;
 `;
 
 const FooterLink = styled(Link)`
-	color: var(--text-secondary);
+	color: var(--text-primary);
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 700;
 	text-decoration: none;
-	padding: 8px 16px;
-	border-radius: var(--radius-md);
+	padding: 12px 24px;
+	border-radius: var(--radius-lg);
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
 	border: 1px solid var(--border-color);
-	transition: var(--transition-fast);
+	transition: var(--transition-bounce);
 	
 	&:hover {
-		color: var(--text-primary);
-		background: var(--hover-bg);
-		border-color: var(--primary-accent);
-		transform: translateY(-1px);
+		color: white;
+		background: var(--primary-gradient);
+		border-color: rgba(255, 255, 255, 0.3);
+		transform: translateY(-2px) scale(1.05);
+		box-shadow: var(--shadow-colored);
 	}
 `;
 

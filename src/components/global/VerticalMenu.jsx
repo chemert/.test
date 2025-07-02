@@ -41,7 +41,7 @@ function VerticalMenu() {
 	return (
 		<>
 			{navState ? (
-				<VerticalMenuWrapper style={{ width: '70px' }} className="glass-effect">
+				<VerticalMenuWrapper style={{ width: '80px' }} className="glass-enhanced slide-in-left">
 					<VerticalMenuList>
 						<VerticalMenuListElement>
 							<VerticalMenuLink
@@ -49,7 +49,8 @@ function VerticalMenu() {
 								to="/dashboard"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Dashboard"
 							>
 								<BiHomeCircle />
 							</VerticalMenuLink>
@@ -60,7 +61,8 @@ function VerticalMenu() {
 								to="/licenses"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Licenses"
 							>
 								<GoSettings />
 							</VerticalMenuLink>
@@ -71,7 +73,8 @@ function VerticalMenu() {
 								to="/add-new"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Add New"
 							>
 								<BiAddToQueue />
 							</VerticalMenuLink>
@@ -82,7 +85,8 @@ function VerticalMenu() {
 								to="/blacklist"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Blacklist"
 							>
 								<BiBlock />
 							</VerticalMenuLink>
@@ -93,7 +97,8 @@ function VerticalMenu() {
 								to="/users"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Users"
 							>
 								<BiUserPlus />
 							</VerticalMenuLink>
@@ -104,7 +109,8 @@ function VerticalMenu() {
 								to="/products"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Products"
 							>
 								<RiStackLine />
 							</VerticalMenuLink>
@@ -115,7 +121,8 @@ function VerticalMenu() {
 								to="/console"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Console"
 							>
 								<VscDebugConsole />
 							</VerticalMenuLink>
@@ -126,13 +133,19 @@ function VerticalMenu() {
 								to="/settings"
 								activeStyle={{}}
 								onClick={mobileClick}
-								className="btn-modern focus-ring"
+								className="btn-modern focus-ring tooltip"
+								data-tooltip="Settings"
 							>
 								<IoSettingsOutline />
 							</VerticalMenuLink>
 						</VerticalMenuListElement>
 						<VerticalMenuListElement onClick={handleLogout}>
-							<VerticalMenuLink exact to="/" className="btn-modern focus-ring logout-btn">
+							<VerticalMenuLink 
+								exact 
+								to="/" 
+								className="btn-modern focus-ring logout-btn tooltip"
+								data-tooltip="Logout"
+							>
 								<RiShutDownLine />
 							</VerticalMenuLink>
 						</VerticalMenuListElement>
@@ -140,10 +153,10 @@ function VerticalMenu() {
 				</VerticalMenuWrapper>
 			) : (
 				<VerticalMenuDisplay>
-					<VerticalMenuWrapper className="vertical-big glass-effect">
+					<VerticalMenuWrapper className="vertical-big glass-enhanced slide-in-left">
 						<VerticalMenuList>
 							<VerticalMenuListElement>
-								<VerticalMenuTitle>Home</VerticalMenuTitle>
+								<VerticalMenuTitle className="gradient-text">Home</VerticalMenuTitle>
 							</VerticalMenuListElement>
 							<VerticalMenuListElement>
 								<VerticalMenuLink
@@ -161,7 +174,7 @@ function VerticalMenu() {
 								</VerticalMenuLink>
 							</VerticalMenuListElement>
 							<VerticalMenuListElement>
-								<VerticalMenuTitle>
+								<VerticalMenuTitle className="gradient-text">
 									Management
 								</VerticalMenuTitle>
 							</VerticalMenuListElement>
@@ -226,7 +239,7 @@ function VerticalMenu() {
 								</VerticalMenuLink>
 							</VerticalMenuListElement>
 							<VerticalMenuListElement>
-								<VerticalMenuTitle>Team</VerticalMenuTitle>
+								<VerticalMenuTitle className="gradient-text">Team</VerticalMenuTitle>
 							</VerticalMenuListElement>
 							<VerticalMenuListElement>
 								<VerticalMenuLink
@@ -260,7 +273,7 @@ function VerticalMenu() {
 							</VerticalMenuListElement>
 
 							<VerticalMenuListElement>
-								<VerticalMenuTitle>Profile</VerticalMenuTitle>
+								<VerticalMenuTitle className="gradient-text">Profile</VerticalMenuTitle>
 							</VerticalMenuListElement>
 							<VerticalMenuListElement>
 								<VerticalMenuLink
@@ -302,17 +315,17 @@ function VerticalMenu() {
 
 /* Modern VerticalMenu styling */
 const VerticalMenuWrapper = styled.div`
-	width: 250px;
+	width: 280px;
 	z-index: 1420;
 	bottom: 0;
 	margin-top: 0;
 	position: fixed;
-	top: 70px;
-	background: var(--card-bg);
-	backdrop-filter: blur(20px);
+	top: 80px;
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-lg);
 	border-right: 1px solid var(--border-color);
-	box-shadow: var(--shadow-lg);
-	padding: 1rem 0;
+	box-shadow: var(--shadow-xl);
+	padding: 2rem 0;
 	
 	@media screen and (max-width: 992px) {
 		height: 100%;
@@ -326,24 +339,25 @@ const VerticalMenuDisplay = styled.div`
 `;
 
 const VerticalMenuTitle = styled.p`
-	padding: 16px 20px 8px;
-	letter-spacing: 0.05em;
+	padding: 20px 24px 12px;
+	letter-spacing: 0.1em;
 	pointer-events: none;
 	cursor: default;
-	font-size: 11px;
+	font-size: 12px;
 	text-transform: uppercase;
-	color: var(--text-muted);
-	font-weight: 700;
+	color: var(--text-primary);
+	font-weight: 800;
 	position: relative;
 	
 	&::after {
 		content: '';
 		position: absolute;
-		bottom: 4px;
-		left: 20px;
-		right: 20px;
-		height: 1px;
-		background: linear-gradient(90deg, var(--primary-accent), transparent);
+		bottom: 8px;
+		left: 24px;
+		right: 24px;
+		height: 2px;
+		background: var(--primary-gradient);
+		border-radius: var(--radius-sm);
 	}
 `;
 
@@ -356,12 +370,12 @@ const VerticalMenuList = styled.ul`
 const VerticalMenuListElement = styled.li`
 	display: block;
 	width: 100%;
-	margin: 2px 8px;
-	border-radius: var(--radius-md);
-	transition: var(--transition-fast);
+	margin: 4px 12px;
+	border-radius: var(--radius-lg);
+	transition: var(--transition-bounce);
 	
 	&:hover {
-		transform: translateX(4px);
+		transform: translateX(8px);
 	}
 `;
 
@@ -370,23 +384,26 @@ const MenuIcon = styled.div`
 	align-items: center;
 	justify-content: center;
 	min-width: 24px;
-	font-size: 20px;
+	font-size: 22px;
 	transition: var(--transition-fast);
 `;
 
 const VerticalMenuLink = styled(NavLink)`
 	display: flex;
 	align-items: center;
-	padding: 12px 16px;
+	padding: 16px 20px;
 	color: var(--text-secondary);
 	position: relative;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: 600;
 	transition: var(--transition-fast);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-lg);
 	text-decoration: none;
-	gap: 12px;
+	gap: 16px;
 	overflow: hidden;
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
+	border: 1px solid transparent;
 	
 	&::before {
 		content: '';
@@ -394,55 +411,60 @@ const VerticalMenuLink = styled(NavLink)`
 		left: 0;
 		top: 0;
 		bottom: 0;
-		width: 3px;
-		background: var(--gradient-primary);
+		width: 4px;
+		background: var(--primary-gradient);
 		transform: scaleY(0);
 		transition: var(--transition-fast);
+		border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 	}
 	
 	&:hover {
 		background: var(--hover-bg);
 		color: var(--text-primary);
+		border-color: var(--border-color);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
 		
 		${MenuIcon} {
-			color: var(--primary-accent);
+			color: var(--text-primary);
 			transform: scale(1.1);
 		}
 	}
 	
 	&.active {
-		background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-		color: var(--text-primary);
-		border: 1px solid rgba(99, 102, 241, 0.2);
+		background: var(--primary-gradient);
+		color: white;
+		border-color: rgba(255, 255, 255, 0.2);
+		box-shadow: var(--shadow-colored);
 		
 		&::before {
 			transform: scaleY(1);
 		}
 		
 		${MenuIcon} {
-			color: var(--primary-accent);
+			color: white;
 		}
 	}
 	
 	&.logout-btn:hover {
-		background: rgba(239, 68, 68, 0.1);
-		color: var(--error-color);
+		background: var(--error-gradient);
+		color: white;
 		
 		${MenuIcon} {
-			color: var(--error-color);
+			color: white;
 		}
 	}
 	
 	@media screen and (max-width: 992px) {
-		padding: 16px;
+		padding: 20px;
 		justify-content: center;
 	}
 `;
 
 const VerticalMenuLinkText = styled.span`
 	color: inherit;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: 600;
 	transition: var(--transition-fast);
 	
 	@media screen and (max-width: 992px) {

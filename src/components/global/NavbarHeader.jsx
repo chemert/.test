@@ -30,12 +30,12 @@ function NavbarHeader({ sendNavStatus, NavStatus }) {
 	};
 	const CustomMenu = withStyles({
 		paper: {
-			border: '1px solid var(--border-color)',
-			backgroundColor: 'var(--card-bg)',
-			color: 'var(--text-secondary)',
-			borderRadius: 'var(--radius-lg)',
-			boxShadow: 'var(--shadow-xl)',
-			backdropFilter: 'blur(20px)',
+			border: '1px solid rgba(255, 255, 255, 0.1)',
+			backgroundColor: 'rgba(20, 20, 30, 0.9)',
+			backdropFilter: 'blur(16px)',
+			color: 'rgba(255, 255, 255, 0.8)',
+			borderRadius: '16px',
+			boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
 		},
 	})((props) => (
 		<Menu
@@ -55,12 +55,12 @@ function NavbarHeader({ sendNavStatus, NavStatus }) {
 	const CustomMenuItem = withStyles((theme) => ({
 		root: {
 			fontSize: '0.9125rem',
-			color: 'var(--text-secondary)',
+			color: 'rgba(255, 255, 255, 0.8)',
 			padding: '12px 20px',
-			transition: 'var(--transition-fast)',
+			transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
 			'&:hover': {
-				backgroundColor: 'var(--hover-bg)',
-				color: 'var(--text-primary)',
+				backgroundColor: 'rgba(255, 255, 255, 0.08)',
+				color: '#ffffff',
 			},
 		},
 	}))(MenuItem);
@@ -117,21 +117,21 @@ function NavbarHeader({ sendNavStatus, NavStatus }) {
 		}
 	}
 	return (
-		<NavbarTop>
+		<NavbarTop className="glass-enhanced">
 			<NavbarWrapper>
 				<NavbarElement>
 					{navState ? (
-						<BrandingBox style={{ width: '70px' }}>
+						<BrandingBox style={{ width: '70px' }} className="float">
 							<BrandingIcon>
 								<RiShieldKeyholeLine />
 							</BrandingIcon>
 						</BrandingBox>
 					) : (
-						<BrandingBox>
+						<BrandingBox className="float">
 							<BrandingIcon>
 								<RiShieldKeyholeLine />
 							</BrandingIcon>
-							<BrandingTitle>GateWay</BrandingTitle>
+							<BrandingTitle className="gradient-text">GateWay</BrandingTitle>
 						</BrandingBox>
 					)}
 					<NavbarMenuBtn
@@ -150,7 +150,7 @@ function NavbarHeader({ sendNavStatus, NavStatus }) {
 					<NavbarMenuBtn className="btn-modern focus-ring">
 						<NotificationIcon>
 							<BiBell />
-							<NotificationBadge />
+							<NotificationBadge className="glow" />
 						</NotificationIcon>
 					</NavbarMenuBtn>
 					<NavbarMenuBtn className="btn-modern focus-ring" onClick={handleClick}>
@@ -161,10 +161,11 @@ function NavbarHeader({ sendNavStatus, NavStatus }) {
 										? `/images/${user.image}`
 										: `/images/default.png`
 								}
+								className="glow"
 							/>
 							<UserInfo>
 								<NavbarUserLabel>{user.name}</NavbarUserLabel>
-								<UserRole>{user.role === 0 ? 'Admin' : 'Moderator'}</UserRole>
+								<UserRole className="badge-modern">{user.role === 0 ? 'Admin' : 'Moderator'}</UserRole>
 							</UserInfo>
 							<RiArrowDropDownLine />
 						</UserSection>
@@ -209,37 +210,38 @@ const NavbarTop = styled.div`
 	right: 0;
 	left: 0;
 	z-index: 1002;
-	background: var(--card-bg);
-	backdrop-filter: blur(20px);
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-lg);
 	border-bottom: 1px solid var(--border-color);
-	box-shadow: var(--shadow-lg);
+	box-shadow: var(--shadow-xl);
 `;
 
 const NavbarWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
-	height: 70px;
-	padding: 0 1rem;
+	height: 80px;
+	padding: 0 2rem;
 `;
 
 const NavbarElement = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1rem;
 `;
 
 /* Navbar left-side elements */
 const BrandingBox = styled.div`
-	background: var(--gradient-primary);
-	width: 250px;
+	background: var(--primary-gradient);
+	width: 280px;
 	display: flex;
-	gap: 12px;
+	gap: 16px;
 	justify-content: center;
 	align-items: center;
-	border-radius: var(--radius-lg);
-	margin: 8px;
+	border-radius: var(--radius-xl);
+	margin: 12px;
 	position: relative;
 	overflow: hidden;
+	box-shadow: var(--shadow-colored);
 	
 	&::before {
 		content: '';
@@ -248,7 +250,7 @@ const BrandingBox = styled.div`
 		left: -100%;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 		transition: var(--transition-normal);
 	}
 	
@@ -256,25 +258,32 @@ const BrandingBox = styled.div`
 		left: 100%;
 	}
 	
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-glow);
+	}
+	
 	@media screen and (max-width: 992px) {
-		width: 54px;
-		margin: 8px 4px;
+		width: 64px;
+		margin: 12px 8px;
 	}
 `;
 
 const BrandingIcon = styled.div`
-	font-size: 24px;
+	font-size: 28px;
 	color: white;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 `;
 
 const BrandingTitle = styled.h1`
 	color: white;
-	font-size: 20px;
-	font-weight: 700;
-	letter-spacing: -0.025em;
+	font-size: 24px;
+	font-weight: 800;
+	letter-spacing: -0.05em;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 	@media screen and (max-width: 992px) {
 		display: none;
 	}
@@ -282,13 +291,14 @@ const BrandingTitle = styled.h1`
 
 const NavbarMenuBtn = styled.button`
 	font-size: 20px;
-	background: transparent;
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
 	outline: none;
-	border: none;
+	border: 1px solid var(--border-color);
 	color: var(--text-secondary);
 	cursor: pointer;
 	padding: 12px;
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-lg);
 	display: flex;
 	align-items: center;
 	gap: 8px;
@@ -299,7 +309,9 @@ const NavbarMenuBtn = styled.button`
 	&:hover {
 		background: var(--hover-bg);
 		color: var(--text-primary);
-		transform: translateY(-1px);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+		border-color: rgba(255, 255, 255, 0.2);
 	}
 
 	&:active {
@@ -322,25 +334,27 @@ const NotificationIcon = styled.div`
 
 const NotificationBadge = styled.div`
 	position: absolute;
-	top: -2px;
-	right: -2px;
-	width: 8px;
-	height: 8px;
-	background: var(--error-color);
+	top: -4px;
+	right: -4px;
+	width: 12px;
+	height: 12px;
+	background: var(--error-gradient);
 	border-radius: 50%;
 	border: 2px solid var(--card-bg);
+	box-shadow: var(--shadow-sm);
 `;
 
 const UserSection = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 16px;
 `;
 
 const UserInfo = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	gap: 4px;
 	@media screen and (max-width: 768px) {
 		display: none;
 	}
@@ -355,21 +369,25 @@ const NavbarUserLabel = styled.span`
 
 const UserRole = styled.span`
 	font-size: 0.75rem;
-	color: var(--text-muted);
+	color: var(--text-primary);
 	line-height: 1.2;
+	padding: 2px 8px;
+	border-radius: var(--radius-xl);
+	background: var(--accent-gradient);
 `;
 
 const NavbarUserImg = styled.img`
 	border-radius: 50%;
-	padding: 2px;
-	background: var(--gradient-primary);
-	height: 40px;
-	width: 40px;
+	padding: 3px;
+	background: var(--primary-gradient);
+	height: 48px;
+	width: 48px;
 	object-fit: cover;
 	transition: var(--transition-fast);
+	box-shadow: var(--shadow-md);
 	
 	&:hover {
-		transform: scale(1.05);
+		transform: scale(1.1);
 		box-shadow: var(--shadow-glow);
 	}
 `;

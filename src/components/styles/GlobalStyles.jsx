@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 /* Main wrapper for every page */
 export const MainWrapper = styled.div`
-	margin-left: 250px;
-	padding: 94px 24px 60px;
+	margin-left: 280px;
+	padding: 120px 32px 80px;
 	position: relative;
 	min-height: 100vh;
 	background: var(--primary-bg);
@@ -11,43 +11,48 @@ export const MainWrapper = styled.div`
 	// Material UI Modern Overrides
 	.MuiTypography-body1 {
 		color: var(--text-secondary);
-		font-weight: 400;
+		font-weight: 500;
 		font-size: 0.875rem;
-		font-family: 'Inter', 'Poppins', sans-serif;
+		font-family: 'Inter', 'SF Pro Display', sans-serif;
 	}
 	
 	.MuiSwitch-track {
-		background-color: var(--border-color);
+		background-color: rgba(255, 255, 255, 0.2);
 	}
 
 	.MuiPaginationItem-root {
 		color: var(--text-secondary);
-		background: var(--card-bg);
+		background: var(--glass-bg);
+		backdrop-filter: var(--blur-sm);
 		border: 1px solid var(--border-color);
-		border-radius: var(--radius-md);
+		border-radius: var(--radius-lg);
 		transition: var(--transition-fast);
+		font-weight: 600;
 		
 		&:hover {
 			background: var(--hover-bg);
 			color: var(--text-primary);
-			transform: translateY(-1px);
+			transform: translateY(-2px);
 			box-shadow: var(--shadow-md);
+			border-color: rgba(255, 255, 255, 0.2);
 		}
 		
 		&.Mui-selected {
-			background: var(--gradient-primary);
+			background: var(--primary-gradient);
 			color: white;
-			border-color: var(--primary-accent);
+			border-color: rgba(255, 255, 255, 0.3);
+			box-shadow: var(--shadow-colored);
 			
 			&:hover {
-				background: var(--gradient-primary);
+				background: var(--primary-gradient);
+				transform: translateY(-2px) scale(1.05);
 			}
 		}
 	}
 
 	.MuiSkeleton-root {
-		background: var(--hover-bg);
-		border-radius: var(--radius-sm);
+		background: var(--glass-bg);
+		border-radius: var(--radius-md);
 	}
 
 	@media screen and (max-width: 992px) {
@@ -58,7 +63,7 @@ export const MainWrapper = styled.div`
 	input:disabled,
 	select:disabled,
 	textarea:disabled {
-		background: var(--secondary-bg);
+		background: var(--glass-bg);
 		color: var(--text-disabled);
 		border-color: var(--border-color);
 		cursor: not-allowed;
@@ -68,7 +73,7 @@ export const MainWrapper = styled.div`
 	button:disabled {
 		cursor: not-allowed;
 		opacity: 0.6;
-		background: var(--secondary-bg);
+		background: var(--glass-bg);
 		color: var(--text-disabled);
 	}
 `;
@@ -78,26 +83,30 @@ export const PageTitleContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 2rem;
-	padding: 0 4px;
+	margin-bottom: 3rem;
+	padding: 0 8px;
 `;
 
 export const PageTitleH4 = styled.h4`
 	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 18px;
+	font-weight: 800;
+	font-size: 24px;
 	color: var(--text-primary);
-	letter-spacing: 0.05em;
+	letter-spacing: 0.1em;
 	position: relative;
+	background: var(--primary-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
 	
 	&::after {
 		content: '';
 		position: absolute;
-		bottom: -4px;
+		bottom: -8px;
 		left: 0;
-		width: 40px;
-		height: 3px;
-		background: var(--gradient-primary);
+		width: 60px;
+		height: 4px;
+		background: var(--primary-gradient);
 		border-radius: var(--radius-sm);
 	}
 `;
@@ -105,10 +114,15 @@ export const PageTitleH4 = styled.h4`
 export const PageTitleNav = styled.p`
 	color: var(--text-secondary);
 	font-size: 0.875rem;
-	font-weight: 500;
+	font-weight: 600;
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	padding: 8px 16px;
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-lg);
 `;
 
 export const PageTitleSpan = styled.span`
@@ -119,48 +133,51 @@ export const PageTitleSpan = styled.span`
 
 // Modern card styling
 export const GlobalCardTitle = styled.h4`
-	font-size: 16px;
-	margin: 0 0 8px;
-	font-weight: 700;
+	font-size: 18px;
+	margin: 0 0 12px;
+	font-weight: 800;
 	color: var(--text-primary);
 	letter-spacing: -0.025em;
 `;
 
 export const GlobalCardDesc = styled.p`
 	color: var(--text-secondary);
-	margin-bottom: 24px;
+	margin-bottom: 32px;
 	font-size: 0.875rem;
-	font-weight: 400;
+	font-weight: 500;
 	line-height: 1.6;
 `;
 
 export const GlobalSelect = styled.select`
 	display: block;
 	width: 100%;
-	padding: 12px 16px;
+	padding: 16px 20px;
 	font-size: 0.875rem;
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.5;
 	color: var(--text-primary);
-	background: var(--card-bg);
-	background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23a6b0cf" d="m2 0-2 2h4zm0 5 2-2h-4z"/></svg>');
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
+	background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23ffffff" d="m2 0-2 2h4zm0 5 2-2h-4z"/></svg>');
 	background-repeat: no-repeat;
-	background-position: right 12px center;
-	background-size: 12px;
+	background-position: right 16px center;
+	background-size: 16px;
 	border: 1px solid var(--border-color);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-lg);
 	outline: none;
 	transition: var(--transition-fast);
 	appearance: none;
 	
 	&:hover {
-		border-color: var(--primary-accent);
-		box-shadow: var(--shadow-sm);
+		border-color: rgba(255, 255, 255, 0.3);
+		box-shadow: var(--shadow-md);
+		background: var(--hover-bg);
 	}
 	
 	&:focus {
-		border-color: var(--primary-accent);
-		box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+		border-color: transparent;
+		box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+		background: var(--hover-bg);
 	}
 
 	&:disabled {
@@ -172,72 +189,77 @@ export const GlobalSelect = styled.select`
 export const GlobalInput = styled.input`
 	display: block;
 	width: 100%;
-	padding: 12px 16px;
+	padding: 16px 20px;
 	font-size: 0.875rem;
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.5;
 	color: var(--text-primary);
-	background: var(--card-bg);
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
 	border: 1px solid var(--border-color);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-lg);
 	outline: none;
 	transition: var(--transition-fast);
 	
 	&::placeholder {
 		color: var(--text-muted);
+		font-weight: 500;
 	}
 	
 	&:hover {
-		border-color: var(--primary-accent);
-		box-shadow: var(--shadow-sm);
+		border-color: rgba(255, 255, 255, 0.3);
+		box-shadow: var(--shadow-md);
+		background: var(--hover-bg);
 	}
 	
 	&:focus {
-		border-color: var(--primary-accent);
-		box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+		border-color: transparent;
+		box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+		background: var(--hover-bg);
 	}
 `;
 
 export const GlobalLabel = styled.label`
-	color: var(--text-secondary);
-	font-weight: 600;
+	color: var(--text-primary);
+	font-weight: 700;
 	font-size: 0.875rem;
-	margin-bottom: 8px;
+	margin-bottom: 12px;
 	display: block;
 	letter-spacing: -0.025em;
 	
 	@media screen and (max-width: 1200px) {
-		margin-bottom: 6px;
+		margin-bottom: 8px;
 	}
 `;
 
 export const GlobalLabelOptional = styled.span`
 	color: var(--text-muted);
-	font-weight: 400;
+	font-weight: 500;
 	font-size: 0.75rem;
 	font-style: italic;
-	margin-left: 4px;
+	margin-left: 8px;
 `;
 
 export const GlobalBtn = styled.button`
-	background: var(--gradient-primary);
+	background: var(--primary-gradient);
 	outline: none;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	font-weight: 600;
+	font-weight: 700;
 	line-height: 1.5;
 	color: white;
 	text-align: center;
 	cursor: pointer;
 	user-select: none;
 	border: none;
-	padding: 12px 24px;
+	padding: 16px 32px;
 	font-size: 0.875rem;
-	border-radius: var(--radius-md);
-	transition: var(--transition-fast);
+	border-radius: var(--radius-lg);
+	transition: var(--transition-bounce);
 	position: relative;
 	overflow: hidden;
+	box-shadow: var(--shadow-md);
 	
 	&::before {
 		content: '';
@@ -246,13 +268,13 @@ export const GlobalBtn = styled.button`
 		left: -100%;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
 		transition: var(--transition-normal);
 	}
 	
 	&:hover {
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-lg);
+		transform: translateY(-3px) scale(1.05);
+		box-shadow: var(--shadow-colored);
 		
 		&::before {
 			left: 100%;
@@ -260,21 +282,21 @@ export const GlobalBtn = styled.button`
 	}
 	
 	&:active {
-		transform: translateY(0);
+		transform: translateY(-1px) scale(1.02);
 	}
 	
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 0.6;
 		transform: none;
-		box-shadow: none;
+		box-shadow: var(--shadow-sm);
 	}
 `;
 
 export const GlobalPaginationContainer = styled.div`
 	position: absolute;
-	right: 24px;
-	bottom: 24px;
+	right: 32px;
+	bottom: 32px;
 	
 	@media screen and (max-width: 450px) {
 		right: 0;
@@ -282,67 +304,75 @@ export const GlobalPaginationContainer = styled.div`
 		position: relative;
 		display: flex;
 		justify-content: center;
-		margin-top: 1rem;
+		margin-top: 2rem;
 	}
 `;
 
 export const GlobalSearchInput = styled.input`
 	border: none;
-	height: 44px;
+	height: 52px;
 	width: 100%;
-	padding: 0 16px 0 44px;
-	background: var(--card-bg);
+	padding: 0 20px 0 52px;
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
 	border: 1px solid var(--border-color);
-	border-radius: var(--radius-lg);
+	border-radius: var(--radius-xl);
 	outline: none;
 	font-size: 0.875rem;
-	font-weight: 500;
+	font-weight: 600;
 	color: var(--text-primary);
 	transition: var(--transition-fast);
 	
 	&::placeholder {
 		color: var(--text-muted);
+		font-weight: 500;
 	}
 	
 	&:hover {
-		border-color: var(--primary-accent);
-		box-shadow: var(--shadow-sm);
+		border-color: rgba(255, 255, 255, 0.3);
+		box-shadow: var(--shadow-md);
+		background: var(--hover-bg);
 	}
 	
 	&:focus {
-		border-color: var(--primary-accent);
-		box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+		border-color: transparent;
+		box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+		background: var(--hover-bg);
 	}
 `;
 
 export const GlobalTextarea = styled.textarea`
 	display: block;
 	width: 100%;
-	padding: 12px 16px;
+	padding: 16px 20px;
 	font-size: 0.875rem;
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.6;
 	color: var(--text-primary);
-	background: var(--card-bg);
+	background: var(--glass-bg);
+	backdrop-filter: var(--blur-sm);
 	border: 1px solid var(--border-color);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-lg);
 	outline: none;
 	transition: var(--transition-fast);
 	resize: vertical;
-	min-height: 100px;
-	max-height: 200px;
+	min-height: 120px;
+	max-height: 240px;
 	
 	&::placeholder {
 		color: var(--text-muted);
+		font-weight: 500;
 	}
 	
 	&:hover {
-		border-color: var(--primary-accent);
-		box-shadow: var(--shadow-sm);
+		border-color: rgba(255, 255, 255, 0.3);
+		box-shadow: var(--shadow-md);
+		background: var(--hover-bg);
 	}
 	
 	&:focus {
-		border-color: var(--primary-accent);
-		box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+		border-color: transparent;
+		box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+		background: var(--hover-bg);
 	}
 `;
